@@ -16,4 +16,6 @@ const signedUrl = await getSignedUrl(s3Client, command, {
   expiresIn: 3600
 })
 
-console.log(signedUrl)
+console.log(`
+  curl -v "${signedUrl}" --upload-file <PATH_TO_FILE> 
+`)
