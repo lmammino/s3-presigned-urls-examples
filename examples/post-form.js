@@ -47,7 +47,7 @@ const server = createServer(async (req, res) => {
 
     const code = `<h1>Upload an image to S3</h1>
     <form action="${url}" method="post" enctype="multipart/form-data">
-      ${Object.entries(fields).map(([key, value]) => `<input type="hidden" name="${key}" value="${value}">`).join('\n')}
+      ${Object.entries(fields).map(([key, value]) => `<input type="hidden" name="${key}" value="${value.replace(/"/g, '&quot;')}">`).join('\n')}
       <div><input type="file" name="file" accept="image/png"></div>
       <div><input type="submit" value="Upload"></div>
     </form>`

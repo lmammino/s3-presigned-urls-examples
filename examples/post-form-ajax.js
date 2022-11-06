@@ -64,7 +64,8 @@ const server = createServer(async (req, res) => {
       Key: randomUUID(), // gets a random uuid every time
       Conditions: [
         ['content-length-range', 0, 5 * 1024 * 1024], // 5 MB max
-        ['starts-with', '$Content-Type', 'image/'] // only images
+        ['starts-with', '$Content-Type', 'image/'],
+        ['starts-with', '$Content-Disposition', 'attachment;'] // only images
         // complete set of possible conditions: https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTConstructPolicy.html
       ],
       Fields: {
@@ -76,9 +77,11 @@ const server = createServer(async (req, res) => {
 
     const code = `<h1>Upload an image to S3</h1>
     <form action="${url}" method="post" enctype="multipart/form-data">
-      ${Object.entries(fields).map(([key, value]) => `<input type="hidden" name="${key}" value="${value}">`).join('\n')}
-      <input name="Content-Type" type="hidden" value="image/png">
-      <div><input type="file" name="file"></div>
+      ${Object.entries(fields).map(([key, value]) => `<input type="hidden" name="${key}" value="${value.replace(/"/g, '&quot;')}">`).join('\n')}
+      <!-- the following 2 fields will be populated by JS, they need to be present in the form before the file input -->
+      <input name="Content-Type" type="hidden" value="">
+      <input name="Content-Disposition" type="hidden" value="">
+      <div><input type="file" name="file" accept="image/*"></div>
       <div><input type="submit" value="Upload"></div>
     </form>
     <div id="result"></div>
@@ -92,9 +95,11 @@ const server = createServer(async (req, res) => {
           result.innerHTML = 'No file selected'
           return
         }
-        const contentType = file.files[0].type
+        const contentType = selectedFile.type
+        const filename = selectedFile.name
         const formData = new FormData(this)
-        formData.append('Content-Type', contentType)
+        formData.set('Content-Disposition', \`attachment; filename="\${filename}"\`)
+        formData.set('Content-Type', contentType)
         result.innerText = 'Uploading...'
         this.inert = true
         const response = await fetch(this.action, {
