@@ -1,5 +1,5 @@
 // usage:
-// > AWS_REGION=eu-west-1 BUCKET_NAME=your-bucket-name node post-form.js
+// > AWS_REGION=eu-west-1 BUCKET_NAME=your-bucket-name node post-form-ajax.js
 //
 // it will start a local web server on an open port
 //
