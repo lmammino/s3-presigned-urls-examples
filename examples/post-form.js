@@ -34,11 +34,11 @@ const server = createServer(async (req, res) => {
       Key: OBJECT_KEY,
       Conditions: [
         ['content-length-range', 0, 5 * 1024 * 1024], // 5 MB max
-        ['starts-with', '$Content-Type', 'image/'] // only images
+        ['eq', '$Content-Type', 'image/png'] // only pngs
         // complete set of possible conditions: https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTConstructPolicy.html
       ],
       Fields: {
-        'Content-Type': 'image/png,image/jpeg,image/gif', // defines the accepted content types
+        'Content-Type': 'image/png', // defines the accepted content types
         success_action_redirect: `http://localhost:${server.address().port}/success`
         // complete list of fields: https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html
       },
@@ -48,7 +48,7 @@ const server = createServer(async (req, res) => {
     const code = `<h1>Upload an image to S3</h1>
     <form action="${url}" method="post" enctype="multipart/form-data">
       ${Object.entries(fields).map(([key, value]) => `<input type="hidden" name="${key}" value="${value}">`).join('\n')}
-      <div><input type="file" name="file"></div>
+      <div><input type="file" name="file" accept="image/png"></div>
       <div><input type="submit" value="Upload"></div>
     </form>`
 
