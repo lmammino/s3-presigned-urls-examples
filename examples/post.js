@@ -11,13 +11,12 @@ const { url, fields } = await createPresignedPost(s3Client, {
   Bucket: BUCKET_NAME,
   Key: OBJECT_KEY,
   Conditions: [
-    ['content-length-range', 0, 5 * 1024 * 1024], // 5 MB max
-    ['starts-with', '$Content-Type', 'image/'] // only images
+    ['content-length-range', 0, 5 * 1024 * 1024] // 5 MB max
     // complete set of possible conditions: https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTConstructPolicy.html
   ],
   Fields: {
     success_action_status: '201',
-    'Content-Type': 'image/png,image/jpeg,image/gif' // defines the accepted content types
+    'Content-Type': 'image/png' // defines the accepted content types
     // success_action_redirect: 'https://example.com/success'
     // complete list of fields: https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html
   },

@@ -9,7 +9,10 @@ The [`examples`](/examples) folder contains several examples of how to generate 
 
 ### Get a file from a bucket
 
-...
+[`/examples/get.js`](/examples/get.js)
+
+Showcases how to create a pre-signed URL that can be used to give temporary access to a private file stored in an S3 bucket.
+
 
 ### Upload a file to a bucket using the PUT method
 
