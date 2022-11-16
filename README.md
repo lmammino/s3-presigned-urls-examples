@@ -16,37 +16,51 @@ Showcases how to create a pre-signed URL that can be used to give temporary acce
 
 ### Upload a file to a bucket using the PUT method
 
-...
+[`/examples/put.js`](/examples/put.js)
+
+Showcases how to create a pre-signed URL that can be used to upload an object into an S3 bucket using the PUT method.
+
 
 ### Upload a file to a bucket using the POST method (with curl)
 
-...
+[`/examples/post.js`](/examples/post.js)
+
+Showcases how to create a pre-signed URL that can be used to upload an object into an S3 bucket using the POST method (using Curl).
 
 
 ### Upload a file to a bucket using the POST method (with a web form)
 
+[`/examples/post-from.js`](/examples/post-from.js)
 
-...
+Showcases how to create a pre-signed URL that can be used to upload an object into an S3 bucket using the POST method (using a web form).
 
 
 ### Upload a file to a bucket using the POST method (using client-side JavaScript a.k.a. AJAX)
 
+[`/examples/post-from-ajax.js`](/examples/post-from-ajax.js)
 
-...
+Showcases how to create a pre-signed URL that can be used to upload an object into an S3 bucket using the POST method (using a web form and client-side JavaScript).
+
 
 ### Listing all buckets
 
+[`/examples/list-buckets.js`](/examples/list-buckets.js)
 
-...
+Showcases how to create a pre-signed URL that can be used to list all the buckets in the signer account.
+
 
 ### Listing objects in a bucket
 
-...
+[`/examples/list-objects.js`](/examples/list-objects.js)
+
+Showcases how to create a pre-signed URL that can be used to list all the objects in a given bucket.
 
 
 ### Deleting an object
 
-...
+[`/examples/delete-object.js`](/examples/delete-object.js)
+
+Showcases how to create a pre-signed URL that can be used to delete a given object from a bucket.
 
 
 ## Contributing
