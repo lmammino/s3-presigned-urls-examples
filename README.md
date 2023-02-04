@@ -2,6 +2,12 @@
 
 Code examples on how to generate and use S3 pre-signed URLs using the JavaScript SDK v3.
 
+These examples are being used in the following resources (which are highly recommended to fully appreciate the topic):
+
+- My article on S3 pre-signed URLs: [The illustrated guide to S3 pre-signed URLs](https://fourtheorem.com/the-illustrated-guide-to-s3-pre-signed-urls/)
+- My talk at the AWS Dublin User Group: [Everything I know about S3 pre-signed URLs](https://fth.link/presign)
+
+
 ## Examples
 
 The [`examples`](/examples) folder contains several examples of how to generate S3 pre-signed URLs for some of the most common use cases.
